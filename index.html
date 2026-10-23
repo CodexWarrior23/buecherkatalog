@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine Buchsammlung</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; margin: 0; padding: 20px; }
+        header { text-align: center; margin-bottom: 30px; }
+        .search-container { text-align: center; margin-bottom: 30px; }
+        .search-container input { padding: 10px; width: 300px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; }
+        .card img { width: 100%; height: 350px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
+        .card h3 { margin: 10px 0 5px 0; font-size: 18px; }
+        .card p { margin: 5px 0; font-size: 14px; color: #666; }
+        .price { font-weight: bold; color: #2c3e50; font-size: 16px; margin: 10px 0; }
+        footer { text-align: center; margin-top: 50px; font-size: 14px; color: #777; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Private Buchsammlung</h1>
+        <p>Eine Auswahl meiner gelesenen und gesammelten Werke. Bei Interesse kontaktiere mich gerne.</p>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Suche nach Titel oder Autor..." onkeyup="filterBooks()">
+    </div>
+
+    <div class="grid" id="bookGrid">
+        <!-- Buch 1 -->
+        <div class="card" data-title="Einführung in Python Max Mustermann" data-author="Max Mustermann">
+          <img src="https://via.placeholder.com/300x450?text=Cover+Buch+1" alt="Buchcover">
+          <div>
+              <h3>Einführung in Python</h3>
+              <p><strong>Autor:</strong> Max Mustermann</p>
+              <p><strong>Verlag / Jahr:</strong> O'Reilly, 2021</p>
+              <p>Guter Zustand, keine Markierungen.</p>
+          </div>
+          <div class="price">15,00 €</div>
+        </div>
+
+        <!-- Buch 2 -->
+        <div class="card" data-title="Japanische Grammatik Anna Schmidt" data-author="Anna Schmidt">
+          <img src="https://via.placeholder.com/300x450?text=Cover+Buch+2" alt="Buchcover">
+          <div>
+              <h3>Japanische Grammatik</h3>
+              <p><strong>Autor:</strong> Anna Schmidt</p>
+              <p><strong>Verlag / Jahr:</strong> Buske, 2018</p>
+              <p>Wie neu.</p>
+          </div>
+          <div class="price">20,00 €</div>
+        </div>
+        
+        <!-- Hier kannst du ganz einfach weitere Bücher als <div class="card">...</div> kopieren und einfügen -->
+    </div>
+
+    <footer>
+        <p>Kontakt: deine-email@beispiel.de</p>
+    </footer>
+
+    <script>
+        function filterBooks() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('card');
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getAttribute('data-title').toLowerCase();
+                if (title.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
